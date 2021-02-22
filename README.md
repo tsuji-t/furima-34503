@@ -9,43 +9,40 @@
 | nickname             | text    | null: false |
 | email                | string  | null: false | 
 | password             | string  | null: false |
-| last_name_full       | text    | null: false |
-| first_name_full      | text    | null: false |
-| last_name_kana       | text    | null: false |
-| first_name_kana      | text    | null: false |
-| name_kana            | text    | null: false |
-| birthday_year        | integer | null: false |
-| birthday_month       | integer | null: false |
-| birthday_day         | integer | null: false |
+| last_name_full       | string  | null: false |
+| first_name_full      | string  | null: false |
+| last_name_kana       | string  | null: false |
+| first_name_kana      | string  | null: false |
+| birthday             | date    | null: false |
+
 
 ### Association
 
 - has_many :items
-- has_many :orders
+- has_one_attached :history
 
 
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| image        | text       | null: false                    |
-| title        | string     | null: false                    |
-| category     | text       | null: false                    |
-| status       | text       | null: false                    |
-| delivery_fee | integer    | null: false                    |
-| area         | string     | null: false                    |
-| delivery_day | integer    | null: false                    |
-| price        | integer    | null: false                    |
-| user         | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| title           | string     | null: false                    |
+| explanation     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| status_id       | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| area_id         | integer    | null: false                    |
+| delivery_day_id | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one_attached :order
 - has_one_attached :image
-
+- has_one_attached :history
 
 
 
@@ -53,20 +50,29 @@
 
 | Column               | Type       | Options                           |
 | -------------------- | ---------- | --------------------------------- |
-| credit_num           | text       | null: false                       |
-| credit_expiration    | string     | null: false                       | 
-| security_code        | string     | null: false                       |
-| Postal_code          | text       | null: false                       |
-| State                | text       | null: false                       |
-| City                 | text       | null: false                       |
-| address_Line         | text       | null: false                       |
-| building_name        | text       | null: false                       |
-| phone_number         | integer    | null: false                       |
-| user                 | references | null: false, foreign_key: true |
-| item                 | references | null: false, foreign_key: true |
+| postal_code          | string     | null: false                       |
+| state                | string     | null: false                       |
+| city                 | string     | null: false                       |
+| address_Line         | string     | null: false                       |
+| building_name        | string     | null: false                       |
+| phone_number         | string     | null: false                       |
 
 
 ### Association
 
-- belongs_to :user
+- has_one_attached :history
+
+
+
+## histories テーブル
+
+| Column  | Type       | Options                           |
+| ------- | ---------- | --------------------------------- |
+| user    | references | null: false, foreign_key: true    |
+| item    | references | null: false, foreign_key: true    |
+| order   | references | null: false, foreign_key: true    |
+
+
+- has_one_attached :user
 - has_one_attached :item
+- has_one_attached :order
