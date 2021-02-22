@@ -4,22 +4,22 @@
 
 ## users テーブル
 
-| Column               | Type    | Options     |
-| -------------------- | ------- | ----------- |
-| nickname             | text    | null: false |
-| email                | string  | null: false | 
-| password             | string  | null: false |
-| last_name_full       | string  | null: false |
-| first_name_full      | string  | null: false |
-| last_name_kana       | string  | null: false |
-| first_name_kana      | string  | null: false |
-| birthday             | date    | null: false |
+| Column               | Type    | Options                   |
+| -------------------- | ------- | ------------------------- |
+| nickname             | string  | null: false               |
+| email                | string  | null: false, unique: true | 
+| encrypted_password   | string  | null: false               |
+| last_name_full       | string  | null: false               |
+| first_name_full      | string  | null: false               |
+| last_name_kana       | string  | null: false               |
+| first_name_kana      | string  | null: false               |
+| birthday             | date    | null: false               |
 
 
 ### Association
 
 - has_many :items
-- has_one_attached :history
+- has_many :history
 
 
 
@@ -42,7 +42,7 @@
 
 - belongs_to :user
 - has_one_attached :image
-- has_one_attached :history
+- has_one :history
 
 
 
@@ -51,16 +51,17 @@
 | Column               | Type       | Options                           |
 | -------------------- | ---------- | --------------------------------- |
 | postal_code          | string     | null: false                       |
-| state                | string     | null: false                       |
+| state_id             | integer    | null: false                       |
 | city                 | string     | null: false                       |
 | address_Line         | string     | null: false                       |
 | building_name        | string     | null: false                       |
 | phone_number         | string     | null: false                       |
+| history              | references | null: false, foreign_key: true    |
 
 
 ### Association
 
-- has_one_attached :history
+- belongs_to :history
 
 
 
@@ -70,9 +71,9 @@
 | ------- | ---------- | --------------------------------- |
 | user    | references | null: false, foreign_key: true    |
 | item    | references | null: false, foreign_key: true    |
-| order   | references | null: false, foreign_key: true    |
 
 
-- has_one_attached :user
-- has_one_attached :item
-- has_one_attached :order
+
+- belongs_to :user
+- belongs_to :item 
+- has_one :order
