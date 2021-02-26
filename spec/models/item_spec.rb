@@ -30,31 +30,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーがーーだと登録できない' do
-      @item.category_id = "1"
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
 
     it '商品状態がーーだと登録できない' do
-      @item.status_id = "1"
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Status must be other than 1")
     end
 
     it '商品送料がーーだと登録できない' do
-      @item.delivery_fee_id = "1"
+      @item.delivery_fee_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
     end
 
     it '商品出産地がーーだと登録できない' do
-      @item.state_id = "1"
+      @item.state_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("State must be other than 1")
     end
 
     it '出品日数がーーだと登録できない' do
-      @item.delivery_day_id = "1"
+      @item.delivery_day_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
     end
@@ -72,13 +72,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '値段が300より低いと登録できない' do
-      @item.price = "299"
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
 
     it '値段が9,999,999より大きいと登録できない' do
-      @item.price = "10000000"
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
