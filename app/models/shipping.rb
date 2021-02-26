@@ -1,4 +1,4 @@
-class Deliveryfee < ActiveHash::Base
+class Shipping < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '出品者が負担' },
@@ -8,5 +8,5 @@ class Deliveryfee < ActiveHash::Base
 
 
   include ActiveHash::Associations
-  has_many :item
+  has_many :items
 end
