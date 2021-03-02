@@ -1,8 +1,11 @@
 class HistoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   def index
     @item = Item.find(params[:item_id])
+    if History.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
     @history_order = HistoryOrder.new
   end
 
