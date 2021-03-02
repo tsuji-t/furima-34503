@@ -6,7 +6,7 @@ class HistoryOrder
     validates :postal, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city
     validates :address
-    validates :phone
+    validates :phone, format: {with: /\A\d{10,11}\z/ }
     validates :user_id
     validates :item_id
     validates :token

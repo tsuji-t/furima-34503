@@ -42,9 +42,9 @@ RSpec.describe Item, type: :model do
     end
 
     it '商品送料がーーだと登録できない' do
-      @item.delivery_fee_id = 1
+      @item.shipping_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping must be other than 1")
     end
 
     it '商品出産地がーーだと登録できない' do
@@ -54,9 +54,9 @@ RSpec.describe Item, type: :model do
     end
 
     it '出品日数がーーだと登録できない' do
-      @item.delivery_day_id = 1
+      @item.arrival_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
+      expect(@item.errors.full_messages).to include("Arrival must be other than 1")
     end
 
     it '値段が空だと登録できない' do
