@@ -10,12 +10,7 @@ class HistoriesController < ApplicationController
     @item = Item.find(params[:item_id])
     @history_order = HistoryOrder.new(history_params)
     if @history_order.valid?
-      Payjp.api_key = "sk_test_9875c4af786d48cf8c7df99f"
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: history_params[:token],
-        currency: 'jpy' 
-      )
+      pay_item
       @history_order.save
       redirect_to root_path
     else
@@ -29,4 +24,12 @@ class HistoriesController < ApplicationController
     params.require(:history_order).permit(:postal, :state_id, :city, :address, :building, :phone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: history_params[:token],
+      currency: 'jpy' 
+      )
+  end
 end
