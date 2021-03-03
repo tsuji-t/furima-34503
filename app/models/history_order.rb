@@ -1,6 +1,6 @@
 class HistoryOrder
   include ActiveModel::Model
-  attr_accessor :postal, :state_id, :city, :address, :building, :phone, :history_id, :user_id, :item_id, :token
+  attr_accessor :postal, :state_id, :city, :address, :building, :phone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :postal, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
