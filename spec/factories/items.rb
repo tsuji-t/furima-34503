@@ -5,9 +5,9 @@ FactoryBot.define do
   explanation     {Faker::Lorem.sentence}
   category_id     {2}
   status_id       {2}
-  delivery_fee_id {2}
+  shipping_id     {2}
   state_id        {2}
-  delivery_day_id {2}
+  arrival_id      {2}
   price           {1000}
   association :user
 
