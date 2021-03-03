@@ -3,7 +3,7 @@ class HistoriesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if History.exists?(item_id: @item.id)
+    if History.exists?(item_id: @item.id) || current_user.id == @item.user.id 
       redirect_to root_path
     end
     @history_order = HistoryOrder.new
