@@ -135,7 +135,7 @@
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold out%>
+          <%# sold out機能%>
           <% if History.exists?(item_id: item.id) %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
@@ -159,7 +159,7 @@
       </li>
       <% end %>
 
-      <%# 商品がない場合は以下のダミー商品が表示される %>
+      <%# 商品がない場合は以下のダミー商品を表示 %>
       <% if @items.empty?  %>
         <li class='list'>
           <%= link_to '#' do %>

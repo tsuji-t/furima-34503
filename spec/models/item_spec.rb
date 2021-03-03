@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
   end
-
+ 
   describe '商品出品登録' do
     it '登録情報が全て存在すれば登録できる' do
       expect(@item).to be_valid

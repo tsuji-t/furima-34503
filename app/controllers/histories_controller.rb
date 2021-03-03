@@ -1,8 +1,8 @@
 class HistoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :item_find, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     if History.exists?(item_id: @item.id) || current_user.id == @item.user.id 
       redirect_to root_path
     end
@@ -10,7 +10,6 @@ class HistoriesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @history_order = HistoryOrder.new(history_params)
     if @history_order.valid?
       pay_item
@@ -22,6 +21,10 @@ class HistoriesController < ApplicationController
   end
 
   private
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 
   def history_params
     params.require(:history_order).permit(:postal, :state_id, :city, :address, :building, :phone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
