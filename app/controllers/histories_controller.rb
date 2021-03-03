@@ -1,11 +1,9 @@
 class HistoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :item_find, only: [:index, :create]
+  before_action :access_check, only: [:index, :create]
 
   def index
-    if History.exists?(item_id: @item.id) || current_user.id == @item.user.id 
-      redirect_to root_path
-    end
     @history_order = HistoryOrder.new
   end
 
@@ -24,6 +22,12 @@ class HistoriesController < ApplicationController
 
   def item_find
     @item = Item.find(params[:item_id])
+  end
+
+  def access_check
+    if History.exists?(item_id: @item.id) || current_user.id == @item.user.id 
+      redirect_to root_path
+    end
   end
 
   def history_params
