@@ -80,6 +80,14 @@
   padding: 2vh 0;
 }
 
+.image-list {
+  margin-right: 20px;
+  height: 130px;
+  width: 170px;
+  object-fit: contain;
+}
+
+
 .click-upload {
   margin: 15px 0;
   min-width: 250px;
