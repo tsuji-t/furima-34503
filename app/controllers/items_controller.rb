@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_find, only: [:show, :edit, :update, :destroy]
-
+  before_action :sold_item, only:[:edit, :update, :destroy]
+  
   def index
     @items = Item.order("created_at DESC")
   end
@@ -24,7 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
     unless @item.user_id == current_user.id
-      redirect_to action: :index
+      redirect_to root_path
     end
   end
 
@@ -44,6 +45,11 @@ class ItemsController < ApplicationController
   end
 
   private
+  def sold_item
+    if History.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
+  end
   
   def item_params
     params.require(:item).permit(:image, :title, :explanation, :category_id, :status_id, :shipping_id, :state_id, :arrival_id, :price).merge(user_id: current_user.id)

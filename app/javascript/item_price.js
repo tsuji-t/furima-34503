@@ -1,7 +1,7 @@
 function price(){
   
   const priceInput = document.getElementById("item-price");
-  priceInput.value = '';
+  
   priceInput.addEventListener("input", () => {
     
     const inputValue = priceInput.value;
@@ -12,6 +12,7 @@ function price(){
     const profitValue = document.getElementById("profit");
     profitValue.innerHTML = (Math.floor(inputValue - addTaxValue));
 
+    
   })
 }
 
