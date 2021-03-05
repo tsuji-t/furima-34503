@@ -48,3 +48,5 @@ ja:
         phone: 電話番号
         history: 購入履歴
         token: クレジットカード情報
+        user_id: ユーザー
+        item_id: 商品
