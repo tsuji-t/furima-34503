@@ -19,3 +19,32 @@ ja:
         price: 販売価格
         user: ユーザー
         image: 画像
+      order:
+        postal: 郵便番号
+        state_id: 都道府県
+        city: 市区町村
+        address: 番地
+        building: 建物名
+        phone: 電話番号
+        history: 購入履歴
+        token: クレジットカード情報
+      history:
+        postal: 郵便番号
+        state_id: 都道府県
+        city: 市区町村
+        address: 番地
+        building: 建物名
+        phone: 電話番号
+        history: 購入履歴
+        token: クレジットカード情報
+  activemodel:
+    attributes:
+      history_order:
+        postal: 郵便番号
+        state_id: 都道府県
+        city: 市区町村
+        address: 番地
+        building: 建物名
+        phone: 電話番号
+        history: 購入履歴
+        token: クレジットカード情報
