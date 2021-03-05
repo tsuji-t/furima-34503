@@ -2,7 +2,7 @@ function preview() {
   const ImageList = document.getElementById('image-list');
   document.getElementById('item-image').addEventListener("change",function(e){
 
-    const imageContent = document.querySelector('img');
+    const imageContent = ImageList.querySelector('div img');
     if (imageContent){
       imageContent.remove();
     }
