@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options numericality: { other_than: 1 }  do
+  with_options numericality: { other_than: 1, message: "を入力して下さい。" }  do
     validates :category_id
     validates :status_id
     validates :shipping_id
@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     validates :arrival_id
   end
 
-  validates :price, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, inclusion: { in: 300..9999999, message: "が不正な値です。" }, format: { with: /\A[0-9]+\z/, message: "を入力して下さい。" }
 
   has_one_attached :image
   belongs_to :user
